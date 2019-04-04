@@ -1,1 +1,6 @@
-<%= @countdown.name %>
+<%if @countdown.days_until_birthday == 0 %>
+  <h2 >Happy Birthday </h2>
+  <%= @countdown.name %>
+<%else %>
+    <h2 >Your birthday will be in</h2><%=@countdown.days_until_birthday %>
+<%end %>
