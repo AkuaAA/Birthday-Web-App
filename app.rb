@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require './lib/countdown'
 
 class Birthday < Sinatra::Base
 
@@ -7,11 +8,15 @@ class Birthday < Sinatra::Base
   end
 
   post '/name_birthday'do
+    $name = params[:name]
+    $day =  params[:day]
+    $month = params[:month]
     redirect('/Birthday')
   end
 
   get '/Birthday' do
-    'Happy Birthday Akua'
+    @countdown = Countdown.new($name, $day, $month)
+    erb :countdown
   end
 
   run! if app_file == $0
